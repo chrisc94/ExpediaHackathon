@@ -12,6 +12,7 @@ $(document).ready(function() {
 	}
 
 	$("#submitBtn").click(function(){
+		console.log($("#start").val());
           findActivities($("#location").val(), $("#start").val(), 
           	$("end").val());
         initialize("bam,bam");
