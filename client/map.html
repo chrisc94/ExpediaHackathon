@@ -6,7 +6,7 @@
       <meta name = "viewport" content = "width = device-width, initial-scale = 1">
       
       <title>Expedia</title>
-      
+
       <!-- Bootstrap -->
       <link href = "css/bootstrap.min.css" rel = "stylesheet">
       <link rel="stylesheet" type="text/css" href="css/map.css">
@@ -89,7 +89,7 @@
 
       $("#submitBtn").click(function(){
           console.log("Hi is it working");
-          findAllActivities(document.getElementById("location").value, document.getElementById("start").value, document.getElementById("end").value);
+          findActivities(document.getElementById("location").value, document.getElementById("start").value, document.getElementById("end").value);
       });
 
       //google.maps.event.addDomListener(window, 'load', initialize);
