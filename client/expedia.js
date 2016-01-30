@@ -8,6 +8,8 @@ var endDate = '2015-08-08';
 $(document).ready(function() {
 	if (typeof(Storage) !== "undefined") {
 		console.log(localStorage);
+		findActivities(localStorage.getItem("search"), localStorage.getItem("start"), 
+			localStorage.getItem("end"));
 	}
 
 	$("#submitBtn").click(function(){
@@ -21,9 +23,9 @@ function processActivities(data) {
 	$('#searchResults .list-group .list-group-item').remove();
     console.log("total activities: " + data.total);
     var activities = data.activities;
-    activities = filterActivities(document.getElementById("minPrice").val(),
-    				document.getElementById("maxPrice").val(),
-    				document.getElementById("keywords").val(),
+    activities = filterActivities($("#minPrice").val(),
+    				$("#maxPrice").val(),
+    				$("#keywords").val(),
     				activities);
     for (var i = 0; i < activities.length; i++) {
     	$('#searchResults .list-group').append('<li class="list-group-item">'+ activities[i].title +'</li>');
@@ -54,7 +56,6 @@ function findActivities(loc, startDate, endDate) {
 }
 
 //findActivities(loc, startDate, endDate);
-findHotels(10, 47.6063889, -122.3308333);
 
 // Takes in a minPrice, maxPrice, and an array of activities objects and returns an array
 // of activities objects that have a price that is above minPrice and below maxPrice.
