@@ -14,10 +14,18 @@ function processResponse(data) {
     }
 }
 
-$.getJSON('http://terminal2.expedia.com/x/activities/search?location=' + loc + '&startDate=' + startDate +
-'&endDate=' + endDate + '&apikey=' + API_KEY, function(obj) {
-    processResponse(obj)
-});
+/*function findHotels() {
+    //http://terminal2.expedia.com:80/x/hotels?maxhotels=10&location=47.6063889%2C-122.3308333&radius=5km&sort=price
+}*/
+
+//findActivities(loc, startDate, endDate);
+
+function findActivities(loc, startDate, endDate) {
+    $.getJSON('http://terminal2.expedia.com/x/activities/search?location=' + loc + '&startDate=' + startDate +
+    '&endDate=' + endDate + '&apikey=' + API_KEY, function(obj) {
+        processResponse(obj);
+    });
+}
 
 // Takes in a minPrice, maxPrice, and an array of activities objects and returns an array
 // of activities objects that have a price that is above minPrice and below maxPrice.
