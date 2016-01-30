@@ -20,6 +20,13 @@
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="js/jquery.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/main.css">
+
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -61,52 +68,44 @@
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h1>Start Bootstrap</h1>
-            <h3>Free Bootstrap Themes &amp; Templates</h3>
+            <h1 class="wow animated bounceInDown" data-wow-duration="1s">Where Do You Want To Go?</h1>
             <br>
+            <div class="formwrap">
+                <input type="text" class="wow shadowfield animated bounceInRight" data-wow-duration="2s">   
+            </div>
+            <h3>
+                <div id="startDate" class="wow animated bounceInLeft" data-wow-duration="2s">
+                    <span class="label label-default">Start Date:</span>
+                    <input type="text" id="start">
+                </div>
+
+                <span id="enddate" class="wow animated bounceInRight">
+                    <span class="label label-default">End Date:</span>
+                    <input type="text" id="end">
+                </span>
+            </h3>
+            <br />
             <a href="#about" class="btn btn-dark btn-lg">Find Out More</a>
+
+
         </div>
     </header>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h4><strong>Start Bootstrap</strong>
-                    </h4>
-                    <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
-                    <ul class="list-unstyled">
-                        <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
-                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:name@example.com">name@example.com</a>
-                        </li>
-                    </ul>
-                    <br>
-                    <ul class="list-inline">
-                        <li>
-                            <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
-                        </li>
-                    </ul>
-                    <hr class="small">
-                    <p class="text-muted">Copyright &copy; Your Website 2014</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
+    <script src="js/wow.js"></script>
+    <script>
+        new WOW().init();
+    </script>
     <!-- Custom Theme JavaScript -->
+    <script>
+        $(document).ready(function() {
+            $('#start').datepicker();
+            $('#end').datepicker();
+        });
+    </script>
+
     <script>
     // Closes the sidebar menu
     $("#menu-close").click(function(e) {
