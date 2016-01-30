@@ -62,8 +62,8 @@ function processActivities(data) {
     				$("#keywords").val(),
     				activities);
     for (var i = 0; i < 26/*activities.length*/; i++) {
-        $('#searchResults .list-group').append('<li class="list-group-item">' + activities[i].price + '</li>');
-        console.log(activities[i]);
+        $('#searchResults .list-group').append('<li class="list-group-item">' + activities[i].title + '</li>');
+        console.log(activities[i].title);
 
         var coords = activities[i].latLng.split(",");
         var latLng = {lat: parseInt(coords[0]), lng: parseInt(coords[1])};
