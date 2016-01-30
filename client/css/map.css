@@ -1,2 +1,7 @@
 body { padding-top: 100 px;}
 #map { height: 500px; }
+.list-group 
+{
+	height: 200px;
+	overflow-y: scroll;
+}
