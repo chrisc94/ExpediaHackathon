@@ -12,6 +12,7 @@ $(document).ready(function() {
 	}
 
 	$("#submitBtn").click(function(){
+		console.log($("#start").val());
           findActivities($("#location").val(), $("#start").val(), 
           	$("end").val());
         initialize("bam,bam");
@@ -61,8 +62,8 @@ function processActivities(data) {
     				$("#keywords").val(),
     				activities);
     for (var i = 0; i < 26/*activities.length*/; i++) {
-        $('#searchResults .list-group').append('<li class="list-group-item">' + activities[i] + '</li>');
-        console.log(activities[i].title);
+        $('#searchResults .list-group').append('<li class="list-group-item">' + activities[i].price + '</li>');
+        console.log(activities[i]);
 
         var coords = activities[i].latLng.split(",");
         var latLng = {lat: parseInt(coords[0]), lng: parseInt(coords[1])};
