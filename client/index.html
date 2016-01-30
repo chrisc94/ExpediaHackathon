@@ -115,8 +115,8 @@
             	if (location == "") {
 	            	alert("Please give us a destination!");
 	            } else {
-	            	var startString = startDate.getFullYear + "-" + (startDate.getMonth() + 1) + "-" + startDate.getDate();
-	            	var endString = endDate.getFullYear + "-" + (endDate.getMonth() + 1) + "-" + endDate.getDate();	 
+	            	var startString = startDate.getFullYear() + "-" + (startDate.getMonth() + 1) + "-" + startDate.getDate();
+	            	var endString = endDate.getFullYear() + "-" + (endDate.getMonth() + 1) + "-" + endDate.getDate();	 
 	            	localStorage.setItem("search", location);
 	            	localStorage.setItem("start", startString);
 	            	localStorage.setItem("end", endString);

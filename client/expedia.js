@@ -6,6 +6,10 @@ var startDate = '2015-08-08';
 var endDate = '2015-08-08';
 
 $(document).ready(function() {
+	if (typeof(Storage) !== "undefined") {
+		console.log(localStorage);
+	}
+
 	$("#submitBtn").click(function(){
           findActivities($("#location").val(), $("#start").val(), 
           	$("end").val());
