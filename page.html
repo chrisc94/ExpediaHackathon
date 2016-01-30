@@ -20,13 +20,28 @@
 <script>
     var map;
     function initMap() {
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        var labelIndex = 0;
+
+        var myLatLng = {lat: -25.363, lng: 131.044};
+
+        // Create a map object and specify the DOM element for display.
         map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 8
+            center: myLatLng,
+            scrollwheel: false,
+            zoom: 4
+        });
+
+        // Create a marker and set its position.
+        new google.maps.Marker({
+            map: map,
+            position: myLatLng,
+            title: 'Hello World!'
         });
     }
+
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbYfDRBO2nwGW-42P6cAdSP4vzOP-gRxo&callback=initMap"
         async defer></script>
 
 </body>
