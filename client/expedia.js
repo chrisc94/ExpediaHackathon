@@ -4,22 +4,23 @@ var loc = 'Seattle';
 var startDate = '2015-08-08';
 var endDate = '2015-08-08';
 
-$(document).ready(function() {
-	if (typeof(Storage) !== "undefined") {
-		console.log(localStorage);
-	}
+$(document).ready(function () {
+    if (typeof(Storage) !== "undefined") {
+        console.log(localStorage);
+    }
 
-	$("#submitBtn").click(function(){
-          findActivities($("#location").val(), $("#start").val(), 
-          	$("end").val());
+    $("#submitBtn").click(function () {
         initialize("bam,bam");
-      });
+        findActivities($("#location").val(), $("#start").val(), $("end").val());
+    });
 })
 
 var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var labelIndex = 0;
 
 var map;
+//var bounds = new google.maps.LatLngBounds();
+//var infowindow = new google.maps.InfoWindow();
 
 function initialize() {
     var bangalore = {lat: 12.97, lng: 77.59};
@@ -47,24 +48,28 @@ function addMarker(location, map) {
         label: labels[labelIndex++ % labels.length],
         map: map
     });
+    return marker;
 }
 
 function processActivities(data) {
     //console.log("data: " + data);
     $('#searchResults .list-group .list-group-item').remove();
     var activities = data.activities;
-    activities = filterActivities(document.getElementById("minPrice").val(),
-    				document.getElementById("maxPrice").val(),
-    				document.getElementById("keywords").val(),
-    				activities);
-    for (var i = 0; i < 26/*activities.length*/; i++) {
+    /*activities = filterActivities(document.getElementById("minPrice").val(),
+     document.getElementById("maxPrice").val(),
+     document.getElementById("keywords").val(),
+     activities);*/
+    for (var i = 0; i < 26; i++) {
         $('#searchResults .list-group').append('<li class="list-group-item">' + activities[i].title + '</li>');
         console.log(activities[i].title);
 
         var coords = activities[i].latLng.split(",");
-        var latLng = {lat: parseInt(coords[0]), lng: parseInt(coords[1])};
+        var latLng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
         console.log(coords);
-        addMarker(latLng, map);
+        console.log(latLng);
+        var marker = addMarker(latLng, map);
+        //bounds.extend(marker.position);
+        //map.fitBounds(bounds);
     }
 }
 
