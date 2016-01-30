@@ -127,28 +127,33 @@ function getPriceOfActivity(activityObj) {
 // objects and returns an array of activities objects that have at least one of the
 // keywords in the title field of the activity.
 function filterByKeyword(keywords, activitiesJsonObj) {
-    var keywordsArr = keywords.toLowerCase().split(" ");
-    var filteredActivities = [];
-    var titleArr = [];
-    for (var i = 0; i < activitiesJsonObj.length; i++) {
-        var titleString = activitiesJsonObj[i].title.toLowerCase();
-        for (var j = 0; j < keywordsArr.length; j++) {
-            if (titleString.indexOf(keywordsArr[j]) > -1) {
-                filteredActivities.push(activitiesJsonObj[i]);
-                break;
-            }
-        }
-        titleArr.push(titleString);
-    }
-    //document.getElementById("test").innerHTML = titleArr;
-    return filteredActivities;
+	var keywordsArr = keywords.toLowerCase().split(" ");
+	var filteredActivities = [];
+	var titleArr = [];
+	for (var i = 0; i < activitiesJsonObj.length; i++) {
+		var titleString = activitiesJsonObj[i].title.toLowerCase();
+		for (var j = 0; j < keywordsArr.length; j++) {
+			if (titleString.indexOf(keywordsArr[j]) > -1) {
+				filteredActivities.push(activitiesJsonObj[i]);
+				break;
+			}
+		}
+		titleArr.push(titleString);
+	}
+	return filteredActivities;
 }
 
 // Takes in a minimumPrice, maximumPrice, a string of keywords where the words are separted by
 // spaces, and an array of activities objects.
 // Returns an array of activities objects that meet the specified conditions.
 function filterActivities(minimumPrice, maximumPrice, keywords, activitiesArray) {
-    var filteredActivities = filterByPrice(minimumPrice, maximumPrice, activitiesArray);
-    var filteredActivities2 = filterByKeyword(keywords, filteredActivities);
-    return filteredActivities2;
+	var filteredActivities = activitiesArray;
+	if (!(minimumPrice === "" || maximumPrice === "")) {
+		filteredActivities = filterByPrice(minimumPrice, maximumPrice, activitiesArray);
+	}
+	if (!(keywords === "")) {
+		filteredActivities = filterByKeyword(keywords, filteredActivities);
+	}
+	return filteredActivities;
 }
+
