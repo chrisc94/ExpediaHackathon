@@ -16,13 +16,16 @@ $(document).ready(function() {
           findActivities($("#location").val(), $("#start").val(), 
           	$("end").val());
         initialize("bam,bam");
-      });
+        findActivities($("#location").val(), $("#start").val(), $("end").val());
+    });
 })
 
 var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var labelIndex = 0;
 
 var map;
+//var bounds = new google.maps.LatLngBounds();
+//var infowindow = new google.maps.InfoWindow();
 
 function initialize() {
     var bangalore = {lat: 12.97, lng: 77.59};
@@ -50,6 +53,7 @@ function addMarker(location, map) {
         label: labels[labelIndex++ % labels.length],
         map: map
     });
+    return marker;
 }
 
 function processActivities(data) {
@@ -66,9 +70,12 @@ function processActivities(data) {
         console.log(activities[i].title);
 
         var coords = activities[i].latLng.split(",");
-        var latLng = {lat: parseInt(coords[0]), lng: parseInt(coords[1])};
+        var latLng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
         console.log(coords);
-        addMarker(latLng, map);
+        console.log(latLng);
+        var marker = addMarker(latLng, map);
+        //bounds.extend(marker.position);
+        //map.fitBounds(bounds);
     }
 }
 
