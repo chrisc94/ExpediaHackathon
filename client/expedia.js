@@ -55,12 +55,13 @@ function processActivities(data) {
     //console.log("data: " + data);
     $('#searchResults .list-group .list-group-item').remove();
     var activities = data.activities;
+    console.log(data.activities);
     activities = filterActivities($("#minPrice").val(),
     				$("#maxPrice").val(),
     				$("#keywords").val(),
     				activities);
     for (var i = 0; i < 26/*activities.length*/; i++) {
-        $('#searchResults .list-group').append('<li class="list-group-item">' + activities[i].title + '</li>');
+        $('#searchResults .list-group').append('<li class="list-group-item">' + activities[i] + '</li>');
         console.log(activities[i].title);
 
         var coords = activities[i].latLng.split(",");
@@ -139,7 +140,7 @@ function filterByKeyword(keywords, activitiesJsonObj) {
         }
         titleArr.push(titleString);
     }
-    document.getElementById("test").innerHTML = titleArr;
+    //document.getElementById("test").innerHTML = titleArr;
     return filteredActivities;
 }
 
