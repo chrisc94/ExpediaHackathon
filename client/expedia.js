@@ -5,12 +5,16 @@ var loc = 'Seattle';
 var startDate = '2015-08-08';
 var endDate = '2015-08-08';
 
+	$("#submit").click(function(){
+          findActivities(document.getElementById("location").val(), document.getElementById("start").val(), 
+          	document.getElementById("end").val());
+      });
+
 function processResponse(data) {
-    console.log("total activities: " + data.total);
+	$('#searchResults .list-group .list-group-item').remove();
     var activities = data.activities;
     for (var i = 0; i < activities.length; i++) {
-        console.log(activities[i].title);
-        console.log("\t" + activities[i])
+    	$('#searchResults .list-group').append('<li class="list-group-item">'+ activities[i].title +'</li>');
     }
 }
 
