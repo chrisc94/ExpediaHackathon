@@ -17,9 +17,9 @@ function processActivities(data) {
 	$('#searchResults .list-group .list-group-item').remove();
     console.log("total activities: " + data.total);
     var activities = data.activities;
-    activities = filterActivities(document.getElementById("minPrice").val(),
-    				document.getElementById("maxPrice").val(),
-    				document.getElementById("keywords").val(),
+    activities = filterActivities($("#minPrice").val(),
+    				$("#maxPrice").val(),
+    				$("#keywords").val(),
     				activities);
     for (var i = 0; i < activities.length; i++) {
     	$('#searchResults .list-group').append('<li class="list-group-item">'+ activities[i].title +'</li>');
@@ -94,7 +94,6 @@ function filterByKeyword(keywords, activitiesJsonObj) {
 		}
 		titleArr.push(titleString);
 	}
-	document.getElementById("test").innerHTML = titleArr;
 	return filteredActivities;
 }
 
@@ -102,7 +101,14 @@ function filterByKeyword(keywords, activitiesJsonObj) {
 // spaces, and an array of activities objects.
 // Returns an array of activities objects that meet the specified conditions.
 function filterActivities(minimumPrice, maximumPrice, keywords, activitiesArray) {
-	var filteredActivities = filterByPrice(minimumPrice, maximumPrice, activitiesArray);
-	var filteredActivities2 = filterByKeyword(keywords, filteredActivities);
-	return filteredActivities2;
+	//window.alert("minPrice" + minimumPrice + ", maxPrice" + maximumPrice);
+	var filteredActivities = activitiesArray;
+	if (!(minimumPrice === "" || maximumPrice === "")) {
+		filteredActivities = filterByPrice(minimumPrice, maximumPrice, activitiesArray);
+	}
+	if (!(keywords === "")) {
+		filteredActivities = filterByKeyword(keywords, filteredActivities);
+	}
+	return filteredActivities;
 }
+
