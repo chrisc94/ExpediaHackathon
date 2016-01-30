@@ -115,7 +115,12 @@
             	if (location == "") {
 	            	alert("Please give us a destination!");
 	            } else {
-	            	window.location.href = 'http://google.com'
+	            	var startString = startDate.getFullYear + "-" + (startDate.getMonth() + 1) + "-" + startDate.getDate();
+	            	var endString = endDate.getFullYear + "-" + (endDate.getMonth() + 1) + "-" + endDate.getDate();	 
+	            	localStorage.setItem("search", location);
+	            	localStorage.setItem("start", startString);
+	            	localStorage.setItem("end", endString);
+	            	window.location.href = 'map.html'
 	            }
             });
         });
