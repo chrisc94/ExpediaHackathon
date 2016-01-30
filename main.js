@@ -8,18 +8,19 @@ var http = require('http');
 var console = require('console')
 
 var PROXY_PORT = 6969;
+var API_KEY = 'fWhBM0UdCM64tEW1xOqCadzjj5v8Ea23'
 
 var allow = { allowHalfOpen: false };
 var server = net.createServer(allow, function(socket) {
 
     socket.on('data', function(data) {
-        socket.write('data');
-        callExpedia();
+        socket.write('data received');
+        callExpedia("Seattle", "2015-08-08", "2015-08-08");
     });
 });
 
 server.listen(PROXY_PORT, function() {
-    util.log("Proxy listening on localhost:" + proxy_port);
+    util.log("Proxy listening on localhost:" + PROXY_PORT);
 });
 
 server.on('error', function(e) {
@@ -35,11 +36,14 @@ process.stdin.on('end', function() {
     process.exit(0);
 });
 
-function callExpedia() {
+function callExpedia(location, startDate, endDate) {
+    util.log("request sent");
+
     var options = {
         host:'terminal2.expedia.com',
         port: 80,
-        path: '/x/hotels?location=47.6063889,-122.3308333&radius=5km&apikey=fWhBM0UdCM64tEW1xOqCadzjj5v8Ea23',
+        path: '/x/activities/search?location=' + location + '&startDate=' + startDate +
+                '&endDate=' + endDate + '&apikey=' + API_KEY,
         method: 'GET'
     };
 
@@ -54,6 +58,7 @@ function callExpedia() {
 
         res.on('end', function() {
             console.log(responseString);
+            console.log("complete");
         });
     });
 
