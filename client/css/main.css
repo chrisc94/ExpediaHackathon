@@ -1,22 +1,41 @@
+.formwrap { display: block; margin-bottom: 15px; }
+.formwrap label { 
+	display: inline-block; 
+	width: 80px; 
+	font-size: 11px; 
+	font-weight: bold; 
+	color: #444; 
+	font-family: Arial, Tahoma, sans-serif; 
+}
+ 
+.formwrap .shadowfield {
+	position: relative;
+	width: 800px;
+	font-size: 17px;
+	font-family: "Helvetica Neue", Arial, sans-serif;
+	font-weight: normal;
+	background: #f7f8f8;
+	color: #7c7c7c;
+	line-height: 1.4;
+	padding: 6px 12px;
+	outline: none;
+	transition: all 0.2s ease-in-out 0s;
+	-webkit-transition: all 0.2s ease-in-out 0s;
+	-moz-transition: all 0.2s ease-in-out 0s;
+	border: 1px solid #ad9c9c;
+	border-radius: 6px 6px 6px 6px;
+	box-shadow: 0 1px rgba(34, 25, 25, 0.2) inset, 0 1px #fff;
+}
+.formwrap .shadowfield:focus {
+	border-color: #930; 
+	background: #fff;
+	color: #000000;
+	box-shadow: inset 0 1px rgba(34, 25, 25, 0.2), 0 1px rgba(255, 255, 255, 0.6), 0 0 7px rgba(235, 82, 82, 0.5); 
+	-moz-box-shadow: inset 0 1px rgba(34, 25, 25, 0.2), 0 1px rgba(255, 255, 255, 0.6), 0 0 7px rgba(235, 82, 82, 0.5); 
+	-webkit-box-shadow: inset 0 1px rgba(34, 25, 25, 0.2), 0 1px rgba(255, 255, 255, 0.6), 0 0 7px rgba(235, 82, 82, 0.5);
+}
 
-
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.shadowfield {
+	padding: 5px;
+	height: 50px;
+}
