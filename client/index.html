@@ -84,7 +84,7 @@
                     <input type="text" id="end">
                 </span>
             </h3>
-            <a href="#about" class="btn btn-dark btn-lg wow animated bounceInLeft">Find Out More</a>
+            <a id="button" class="btn btn-dark btn-lg wow animated bounceInLeft">Find Out More</a>
         </div>
     </header>
 
@@ -101,7 +101,7 @@
             $('#start').datepicker();
             $('#end').datepicker();
 
-            $('#submit').click(function() {
+            $('#button').click(function() {
             	var location = $('#location').val();
             	var startDate = $('#start').datepicker('getDate');
             	var endDate = $('#end').datepicker('getDate');
@@ -115,7 +115,7 @@
             	if (location == "") {
 	            	alert("Please give us a destination!");
 	            } else {
-	            	
+	            	window.location.href = 'http://google.com'
 	            }
             });
         });
