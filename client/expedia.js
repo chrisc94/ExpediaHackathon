@@ -7,8 +7,8 @@ var endDate = '2015-08-08';
 
 $(document).ready(function() {
 	$("#submitBtn").click(function(){
-          findActivities(document.getElementById("location").val(), document.getElementById("start").val(), 
-          	document.getElementById("end").val());
+          findActivities($("#location").val(), $("#start").val(), 
+          	$("end").val());
       });
 }) 
 
