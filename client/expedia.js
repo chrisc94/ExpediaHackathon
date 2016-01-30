@@ -17,6 +17,10 @@ function processActivities(data) {
 	$('#searchResults .list-group .list-group-item').remove();
     console.log("total activities: " + data.total);
     var activities = data.activities;
+    activities = filterActivities(document.getElementById("minPrice").val(),
+    				document.getElementById("maxPrice").val(),
+    				document.getElementById("keywords").val(),
+    				activities);
     for (var i = 0; i < activities.length; i++) {
     	$('#searchResults .list-group').append('<li class="list-group-item">'+ activities[i].title +'</li>');
     }
