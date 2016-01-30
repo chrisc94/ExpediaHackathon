@@ -56,6 +56,7 @@ function filterByKeyword(keywords, activitiesJsonObj) {
 		for (var j = 0; j < keywordsArr.length; j++) {
 			if (titleString.indexOf(keywordsArr[j]) > -1) {
 				filteredActivities.push(activitiesJsonObj[i]);
+				break;
 			}
 		}
 		titleArr.push(titleString);
