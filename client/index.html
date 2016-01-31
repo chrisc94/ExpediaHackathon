@@ -38,40 +38,13 @@
 </head>
 
 <body>
-
-    <!-- Navigation -->
-    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
-    <nav id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-            <li class="sidebar-brand">
-                <a href="#top"  onclick = $("#menu-close").click(); >Start Bootstrap</a>
-            </li>
-            <li>
-                <a href="#top" onclick = $("#menu-close").click(); >Home</a>
-            </li>
-            <li>
-                <a href="#about" onclick = $("#menu-close").click(); >About</a>
-            </li>
-            <li>
-                <a href="#services" onclick = $("#menu-close").click(); >Services</a>
-            </li>
-            <li>
-                <a href="#portfolio" onclick = $("#menu-close").click(); >Portfolio</a>
-            </li>
-            <li>
-                <a href="#contact" onclick = $("#menu-close").click(); >Contact</a>
-            </li>
-        </ul>
-    </nav>
-
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
             <h1 class="wow animated bounceInDown" data-wow-duration="1s">Business Itinerary</h1>
            
-            <div class="formwrap">
-                <input id="location" type="text" class="wow shadowfield animated bounceInRight" data-wow-duration="2s" placeholder="Where do you want to go?">   
+            <div class="formwrap wow animated bounceInRight" data-wow-duration="2s">
+                <input id="location" class="shadowfield" type="text" placeholder="Where do you want to go?">   
             </div>
             <h3>
                 <span id="startDate" class="wow animated bounceInLeft" data-wow-duration="2s" style="display: inline-block">
@@ -84,6 +57,7 @@
                     <input type="text" id="end">
                 </span>
             </h3>
+            <br />
             <a id="button" class="btn btn-dark btn-lg wow animated bounceInLeft">Find Out More</a>
             <div style="position: relative;">
 	            <div id="canvasDiv" style=""></div>
@@ -108,7 +82,7 @@
             $('#start').datepicker();
             $('#end').datepicker();
 
-            $('#button').click(function() {
+            $('#submitBtn').click(function() {
             	var location = $('#location').val();
             	var startDate = $('#start').datepicker('getDate');
             	var endDate = $('#end').datepicker('getDate');
