@@ -8,7 +8,7 @@ var hotelMap = [];
 
 $(window).load(function(){
     $("#filterSection").hide();
-    initialize()
+    //initialize()
 });
 
 $(document).ready(function() {
@@ -22,6 +22,7 @@ $(document).ready(function() {
 		$('#start').val(localStorage.getItem("start"));
 		$('#end').val(localStorage.getItem("end"));
 		console.log(localStorage);
+        initialize("bam,bam");
 		findActivities(localStorage.getItem("search"), localStorage.getItem("start"), 
 			localStorage.getItem("end"));
 	}
