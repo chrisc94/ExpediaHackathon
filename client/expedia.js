@@ -36,6 +36,34 @@ function initialize(latlong) {
         zoom: 15,
         center: mid
     });
+    loadBackgroundImage();
+}
+
+/**
+ * Returns a random integer between min and max
+ * Using Math.round() will give you a non-uniform distribution!
+ */
+function getRandomInt (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function loadBackgroundImage() {
+	var numPictures = 3
+	switch(getRandomInt (0, numPictures - 1)) {
+		case 0:
+			$.backstretch("img/goHawks.png");
+			break;
+		case 1:
+			$.backstretch("img/ninersSuck.jpg");
+			break;
+		case 2:
+			$.backstretch("img/newYork.jpg");
+			break;
+		default:
+			window.alert("Something went wrong...");
+	}
+
+	
 }
 
 // Adds a marker to the map.
