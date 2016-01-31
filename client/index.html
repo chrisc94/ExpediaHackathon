@@ -85,12 +85,19 @@
                 </span>
             </h3>
             <a id="button" class="btn btn-dark btn-lg wow animated bounceInLeft">Find Out More</a>
+            <div style="position: relative;">
+	            <div id="canvasDiv" style=""></div>
+	            <div style="position: absolute; top:110px; left: 700px; color: black;"><h2><b>Select your adventure!</b></h2></div>
+            </div>
         </div>
     </header>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
+	<script src="js/picture.js"></script>
+	<script type="text/javascript">
+    	 prepareCanvas(document.getElementById("canvasDiv"), 690, 220);
+    </script>
     <script src="js/wow.js"></script>
     <script>
         new WOW().init();

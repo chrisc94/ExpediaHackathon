@@ -21,6 +21,16 @@ $(document).ready(function() {
 
 	$("#menu-button").click(function() {
 		$('#headerContainer').toggle();
+
+		var str = $("#menu-button").val();
+		if (str === "") {
+			$("#menu-button").html("&#8681 &#8681 &#8681");
+			$("#menu-button").val("1");
+		} else {
+			$("#menu-button").html("&#8679 &#8679 &#8679");
+			$("#menu-button").val("");
+		}
+		
 	});
 
 	$("#submitBtn").click(function(){
