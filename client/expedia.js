@@ -28,7 +28,7 @@ $(document).ready(function() {
 
     $('#itemList').on('click', 'button.list-group-item', function(){
     	console.log("Hi seahawks");
-    	this.addClass('disabled');
+    	this.remove();
     });
 });
 
