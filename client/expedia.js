@@ -26,6 +26,9 @@ $(document).ready(function() {
 			localStorage.getItem("end"));
 	}
 
+	$('#start').datepicker();
+	$('#end').datepicker();
+
 	//var object = {body: [{a: "a", b: 1}, {a: "b", b: 2}]};
 	//var json = JSON.parse(JSON.stringify(object));
 	//console.log(json);
