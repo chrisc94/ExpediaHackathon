@@ -6,10 +6,14 @@ var endDate = '2015-08-08';
 
 $(document).ready(function() {
 	if (typeof(Storage) !== "undefined") {
+		$('#location').val(localStorage.getItem("search"));
+		$('#start').val(localStorage.getItem("start"));
+		$('#end').val(localStorage.getItem("end"));
 		console.log(localStorage);
 		findActivities(localStorage.getItem("search"), localStorage.getItem("start"), 
 			localStorage.getItem("end"));
 	}
+
 
 	$("#submitBtn").click(function(){
 		console.log($("#start").val());
