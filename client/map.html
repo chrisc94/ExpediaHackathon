@@ -10,17 +10,16 @@
       <!-- Bootstrap -->
       <link href = "css/bootstrap.min.css" rel = "stylesheet">
       <link rel="stylesheet" type="text/css" href="css/map.css">
+      <link rel="stylesheet" type="text/css" href="css/slider.css">
       <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
       <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 
-          <link href="css/stylish-portfolio.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-
+      <link href="css/stylish-portfolio.css" rel="stylesheet">
+      <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+       <script src="js/SendBird-sdk-2.0.1.min.js"></script>
        <script type="text/javascript" src="expedia.js" ></script>
+        <script type="text/javascript" src="js/bootstrap-slider.js" ></script>
        <script type="text/javascript" src="js/backstretch.min.js" ></script>
        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWdo0gxXLBwt9eZ6H81RWPbR39udI0Tq4&callback=initialize"></script>
       
@@ -31,86 +30,83 @@
    </head>
    <body>
    
-  <header id="header" style="background-color: #003366; opacity: 1">
+  
+  <!--#EEE2C2   &#8681 -->
+   <!-- overall container --> 
+   <div class="container" style="background-color: white; opacity: 0.99;">
+    <header id="header" style="background-color: white; opacity: 1">
     <div id="headerContainer" class="container">
-      <p>&nbsp</p>
-      <center>
+        <center>
           <div class="form-group form-inline">
-            <input id="location" type="text" class="form-control" placeholder="Location">
+            <img id="logo" src="img/map-marker.png" alt="Map Maker">
+            <input id="location" type="text" class="form-control" placeholder="Where do you want to go?">
             <input id="start" type="text" class="form-control" placeholder="StartTime">
             <input id="end" type="text" class="form-control" placeholder="EndTime">
-            <button id="submitBtn" type="submit" class="btn btn-default">Submit</button>
+            <button id="filterBtn" type="submit" class="btn btn-default">More Filters</button>
+            <button id="submitBtn" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
           </div>
         </center>
         <center>
-          <div class="form-group form-inline">
-            <h2><span class="label label-default">Filters:</span>
-            <input id="minPrice" type="text" class="form-control" placeholder="Minimum price">
-             <input id="maxPrice" type="text" class="form-control" placeholder="Maximum price">
-            <input id="keywords" type="text" class="form-control" placeholder="search for activities"></h2>
+          <div id="filterSection" class="form-group form-inline">
+            $0 <input id="price" type="text" class="span2" data-slider-min="0" data-slider-max="1000" data-slider-step="5" data-slider-value="[0,1000]"/> $1000
+            <!--<input id="minPrice" type="text" class="form-control" placeholder="Minimum price">
+             <input id="maxPrice" type="text" class="form-control" placeholder="Maximum price">-->
+            <input id="keywords" type="text" class="form-control" placeholder="What do you want to do?">
           </div>
           <div class="form-group form-inline">
           </div>
         </center>
       </div>
   </header><!-- /header -->
-  <!--#EEE2C2   &#8681 -->
-   <!-- overall container --> 
-   <div class="container" style="background-color: ; opacity: 0.99;">
-    <center><button id="menu-button" style="position: absolute; font-size:15px">&#8679 &#8679 &#8679</button></center>
-    <p></p>
+    <!--<center><button id="menu-button" style="position: absolute; font-size:15px">&#8679 &#8679 &#8679</button></center> -->
     <!-- header -->
-    <div class="row" style="display: none;">
-      <center>
-        <div class="form-group form-inline">
-          <input id="location" type="text" class="form-control" placeholder="Location">
-          <input id="start" type="text" class="form-control" placeholder="StartTime">
-          <input id="end" type="text" class="form-control" placeholder="EndTime">
-          <button id="submitBtn" type="submit" class="btn btn-default">Submit</button>
-        </div>
-      </center>
-      <center>
-        <div class="form-group form-inline">
-          <h2><span class="label label-default">Filters:</span>
-          <input id="minPrice" type="text" class="form-control" placeholder="Minimum price">
-           <input id="maxPrice" type="text" class="form-control" placeholder="Maximum price">
-          <input id="keywords" type="text" class="form-control" placeholder="search for activities"></h2>
-        </div>
-        <div class="form-group form-inline">
-        </div>
-      </center>
-    </div>
-
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#menu1">Activities</a></li>
+      <li><a data-toggle="tab" href="#menu2">Hotels</a></li>
+    </ul>
     <!-- body -->
     <div class="row">
           <div id="iternary" class="col-md-7">
-            <h2 style="background-color: #003366; color: white; opacity: 0.80" >Activities</h2>
-            <div id="searchResults">
-              <ul id="itemList" class="list-group">
-              </ul>
-            </div>
-            <h2 style="background-color: #003366; color: white; opacity: 0.80" >Trip</h2>
-            <div id="trip">
-              <ul id="myTrip" class="list-group">
-              </ul>
-            </div>
-            <h2 id="cost">Total Cost: </h2>             
-          </div>
+            <div class="tab-content">
+              <div id="menu1" class="tab-pane fade in active">
+
+                <div id="searchResults">
+                  <ul id="itemList" class="list-group"></ul>
+                </div>
+              </div>
+
+              <div id="menu2" class="tab-pane fade">
+                 <div id="hotelResults">
+                     <ul id="hotelList" class="list-group">
+                 </div>
+              </div>
+            </div> 
+
+            <div id="trip" class="panel panel-default">
+              <div class="panel-heading">Trip</div>
+              <ul id="myTrip" class="list-group"></ul>
+              <div class="panel-footer">Total Cost: 
+
+              <button aria-label="Right Align" type="button" class="btn btn-default pull-right"><span class="glyphicon glyphicon-minus"></span></button>
+              <button aria-label="Right Align" type="button" class="btn btn-default pull-right"><span class="glyphicon glyphicon-plus"></span></button>
+
+              </div>   
+            </div>           
+          </div>              
           <div class="col-md-5">
             <div id="map"></div>
           </div>
       </div>
 
 
-       <div class="row">
+       <!--<div class="row">
            <div id="iternary" class="col-md-12">
-               <h2 style="background-color: #003366; color: white; opacity: 0.80" >Possible Hotels</h2>
-               <div id="hotelResults">
+               <div id="hotelResults" class="panel panel-default">
+                <div class="panel-heading">Hotels</div>
                    <ul id="hotelList" class="list-group">
-
                </div>
            </div>
-       </div>
+       </div>-->
     </div>
   </div>
 
@@ -119,13 +115,10 @@
     <script type="text/javascript">
       // In the following example, markers appear when the user clicks on the map.
       // Each marker is labeled with a single alphabetical character.
+
       initialize();
       //google.maps.event.addDomListener(window, 'load', initialize);
     </script>
-
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-      <script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
       
       <!-- Include all compiled plugins (below), or include individual files as needed -->
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
