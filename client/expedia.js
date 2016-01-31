@@ -47,9 +47,10 @@ function addMarker(location, map) {
 }
 
 function processActivities(data) {
-    //console.log("data: " + data);
     $('#searchResults .list-group .list-group-item').remove();
     var activities = data.activities;
+
+
     activities = filterActivities($("#minPrice").val(),
     				$("#maxPrice").val(),
     				$("#keywords").val(),
@@ -57,13 +58,15 @@ function processActivities(data) {
 
     var markers = [];
     for (var i = 0; i < 26; i++) {
-        $('#searchResults .list-group').append('<li class="list-group-item">' + activities[i].title + '</li>');
-        console.log(activities[i].title);
+//        $('#searchResults .list-group').append('<li class="list-group-item">' + '<span class="badge">' + 
+  //      	activities[i].fromPrice + '</span>' + activities[i].title + '</li>');
+		
+		$('#searchResults .list-group').append('<button type="button" class="list-group-item text-left"><span class="badge">' + activities[i].fromPrice + '</span>' + activities[i].title + '</button>');
 
         var coords = activities[i].latLng.split(",");
         var latLng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
-        console.log(coords);
-        console.log(latLng);
+        //console.log(coords);
+        //console.log(latLng);
         var marker = addMarker(latLng, map);
         markers.push(marker);
     }

@@ -5,3 +5,8 @@ body { padding-top: 100 px;}
 	height: 200px;
 	overflow-y: scroll;
 }
+
+.list-group-item
+{
+	width: 100%;
+}
