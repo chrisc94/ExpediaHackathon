@@ -137,9 +137,11 @@ $(document).ready(function() {
     });
 
     $('#hotelList').on('click', 'button.list-group-item', function() {
-        if (this.style.backgroundColor == 'yellow') {
+        if (this.style.backgroundColor == 'yellow' || this.style.backgroundColor == 'rgb(255, 255, 0)') {
+            //alert('is yellow');
             $(this).css('background-color', 'white');
         } else {
+           // alert(this.style.backgroundColor);
             $(this).css('background-color', 'yellow');
         }
         toggleBounce(hotelMap[this.id]);
