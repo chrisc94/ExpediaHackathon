@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang = "en">
+   <head>
+      <meta charset = "utf-8">
+      <meta http-equiv = "X-UA-Compatible" content = "IE = edge">
+      <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+      
+      <title>Expedia</title>
+
+      <!-- Bootstrap -->
+      <link href = "css/bootstrap.min.css" rel = "stylesheet">
+      <link rel="stylesheet" type="text/css" href="css/map.css">
+      <link rel="stylesheet" type="text/css" href="css/slider.css">
+      <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+      <link href="css/stylish-portfolio.css" rel="stylesheet">
+      <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+       <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+       <script src="js/SendBird-sdk-2.0.1.min.js"></script>
+       <script type="text/javascript" src="expedia.js" ></script>
+        <script type="text/javascript" src="js/bootstrap-slider.js" ></script>
+       <script type="text/javascript" src="js/backstretch.min.js" ></script>
+       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWdo0gxXLBwt9eZ6H81RWPbR39udI0Tq4&callback=initialize"></script>
+      
+      <!--[if lt IE 9]>
+      <script src = "https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src = "https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+   </head>
+   <body>
+  
+  <!--#EEE2C2   &#8681 -->
+   <!-- overall container --> 
+   <div class="container" style="background-color: white; opacity: 0.99; box-shadow: 0px 10px 25px #888888;">
+    <header id="header" style="background-color: white; ">
+    <div id="headerContainer" class="container">
+        <center>
+          <div class="form-group form-inline">
+            <img id="logo" src="img/map-marker.png" alt="Map Maker">
+            <input id="location" type="text" class="form-control" placeholder="Where do you want to go?">
+            <input id="start" type="text" class="form-control" placeholder="StartTime">
+            <input id="end" type="text" class="form-control" placeholder="EndTime">
+            <button id="filterBtn" type="submit" class="btn btn-default">More Filters</button>
+            <button id="submitBtn" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
+          </div>
+        </center>
+        <center>
+          <div id="filterSection" class="form-group form-inline">
+            $0 <input id="price" type="text" class="span2" data-slider-min="0" data-slider-max="1000" data-slider-step="5" data-slider-value="[0,1000]"/> $1000
+            <!--<input id="minPrice" type="text" class="form-control" placeholder="Minimum price">
+             <input id="maxPrice" type="text" class="form-control" placeholder="Maximum price">-->
+            <input id="keywords" type="text" class="form-control" placeholder="What do you want to do?">
+          </div>
+          <div class="form-group form-inline">
+          </div>
+        </center>
+      </div>
+  </header><!-- /header -->
+
+  <!--#EEE2C2   &#8681 -->
+   <!-- overall container --> 
+    <!-- header -->
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#menu1">1</a></li>
+      <!--<li><a data-toggle="tab" href="#menu2">Hotels</a></li>-->
+    </ul>
+    <!-- body -->
+    <div class="row">
+          <div id="iternary" class="col-md-7">
+            <div class="tab-content">
+              <div id="menu1" class="tab-pane fade in active">
+                <div class = "row">
+                <div id="trip" class="panel panel-default">
+                  <div class="panel-heading">Trip</div>
+                  <ul id="myTrip" class="list-group"></ul>
+                  <div class="panel-footer">Total Cost: </div>   
+                </div>
+              </div>
+            </div>         
+          </div>              
+      </div>
+    </div>
+  </div>
+
+
+  
+    <script type="text/javascript">
+      // In the following example, markers appear when the user clicks on the map.
+      // Each marker is labeled with a single alphabetical character.
+
+      initialize();
+      //google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+   </body>
+</html>
