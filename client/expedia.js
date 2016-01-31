@@ -35,7 +35,7 @@ $(document).ready(function() {
 	$('#postcall').click(function() {
 		console.log("funciton called");
 		var object = {body: []};
-		$('.list-group-item').each(function() {
+		$('#myTrip').each(function() {
 			var id = parseInt($(this).attr("id"));
 			var activity = activities[id];
 			var child = {title: activity.title, parse: activity.fromPrice, badge: activity.recommendationScore };

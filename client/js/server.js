@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	console.log("dfsdf");
 	$.urlParam = function(name){
 	    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
 	    if (results==null){
@@ -10,6 +11,7 @@ $(document).ready(function() {
 	}
 	var a = $.urlParam('a');
 	if(a != null) {
+		console.log("load");
 		$.get("https://obscure-temple-85981.herokuapp.com/find/" + a, function(data) {
 			console.log(data);
 		});
