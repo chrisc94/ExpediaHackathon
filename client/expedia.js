@@ -29,8 +29,12 @@ $(document).ready(function() {
         findActivities($("#location").val(), $("#start").val(), $("end").val());
     });
 
-    $(".list-group-item").click(function(){
-    	console.log("Hi seahawks");
+    $('#itemList').on('click', 'button.list-group-item', function(){
+        
+        console.log(this.id);
+        //console.log(document.getElementById("myTrip").id);
+        $("#myTrip").append('<button type="button" id="' + this.id + '" class="list-group-item text-left"><span class="badge">' + activities[this.id].fromPrice + '</span>' + activities[this.id].title + '</button>');
+        this.remove();
     });
 });
 
