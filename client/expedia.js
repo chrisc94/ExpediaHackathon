@@ -72,7 +72,7 @@ $(document).ready(function() {
     });
 
     $('#itemList').on('click', 'button.list-group-item', function(){
-        $("#myTrip").append('<button type="button" id="' + this.id + '" class="list-group-item text-left"><span class="badge">' + activities[this.id].fromPrice + '</span>'  + ' <span class="score badge">'+ activities[this.id].recommendationScore  +"</span>" + activities[this.id].title + '</button>');
+        $("#myTrip").append('<button type="button" id="' + this.id + '" class="list-group-item text-left"><span class="badge">' + activities[this.id].fromPrice + '</span>'  + ' <span class="score badge">'+ activities[this.id].recommendationScore  +"</span>" + '<b>' + labels[this.id] + '</b> ' + activities[this.id].title + '</button>');
         toggleBounce(markerMap[this.id]);
         var results = activities[this.id].fromPrice.split('$');
         totalCost += parseInt(results[1]); 
@@ -83,7 +83,7 @@ $(document).ready(function() {
 
     $('#myTrip').on('click', 'button.list-group-item', function(){
         //console.log(document.getElementById("myTrip").id);
-        $("#itemList").append('<button type="button" id="' + this.id + '" class="list-group-item text-left"><span class="badge">' + activities[this.id].fromPrice + '</span>' + ' <span class="score badge">'+ activities[this.id].recommendationScore  +"</span>" + activities[this.id].title + '</button>');
+        $("#itemList").append('<button type="button" id="' + this.id + '" class="list-group-item text-left"><span class="badge">' + activities[this.id].fromPrice + '</span>' + '<b>' + labels[this.id] + '</b> ' +' <span class="score badge">'+ activities[this.id].recommendationScore  +"</span>" + activities[this.id].title + '</button>');
         toggleBounce(markerMap[this.id]);
         var results = activities[this.id].fromPrice.split('$');
         totalCost -= parseInt(results[1]); 
@@ -245,7 +245,7 @@ function processActivities(data) {
             bounds.extend(markers[i].getPosition());
             markerMap[i] = markers[i];
             $('#searchResults .list-group').append('<button type="button" id="' + i 
-                + '" class="list-group-item text-left"><span class="badge">' + activities[i].fromPrice + '</span>' + ' <span class="score badge">'+ activities[i].recommendationScore  + "</span>" + activities[i].title + '</button>');
+                + '" class="list-group-item text-left"><span class="badge">' + activities[i].fromPrice + '</span>' + ' <span class="score badge">'+ activities[i].recommendationScore  + "</span>" + '<b>' + labels[i] + '</b> ' + activities[i].title + '</button>');
         }
     }
     map.fitBounds(bounds);
