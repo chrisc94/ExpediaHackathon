@@ -4,6 +4,7 @@ var API_KEY = 'fWhBM0UdCM64tEW1xOqCadzjj5v8Ea23';
 var totalCost = 0;
 var activities;
 var markerMap = [];
+var hotelMap = [];
 
 $(window).load(function(){
     initialize()
@@ -60,6 +61,15 @@ $(document).ready(function() {
         $("#cost").text("Total Cost: " + totalCost);
         console.log("totalCost" + totalCost);
         this.remove();
+    });
+
+    $('#hotelList').on('click', 'button.list-group-item', function() {
+        if ($(this).css('background-color') == "yellow") {
+            $(this).css('background-color', 'yellow');
+        } else {
+            $(this).css('background-color', 'white');
+        }
+        toggleBounce(hotelMap[this.id]);
     });
 });
 
@@ -122,6 +132,18 @@ function addMarker(location, map) {
     return marker;
 }
 
+function addMarkerHotel(location, map) {
+    // Add the marker at the clicked location, and add the next-available label
+    // from the array of alphabetical characters.
+    var marker = new google.maps.Marker({
+        position: location,
+        animation: google.maps.Animation.DROP,
+        map: map,
+        icon: 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png'
+    });
+    return marker;
+}
+
 function toggleBounce(marker) {
     if (marker.getAnimation() !== null) {
         marker.setAnimation(null);
@@ -164,6 +186,8 @@ function processActivities(data) {
     var avgLat = totalLat / markers.length;
     var avgLong = totalLong / markers.length;
 
+    findHotels(10, avgLat, avgLong);
+
     var bounds = new google.maps.LatLngBounds();
     for (var i = markers.length - 1; i >= 0; i--) {
         if (Math.abs(Math.sqrt(Math.pow(markers[i].getPosition().lat(), 2) + Math.pow(markers[i].getPosition().lng(), 2)) -
@@ -186,13 +210,21 @@ function processHotels(data) {
     console.log("total hotels: " + data.HotelCount);
     var hotelInfo = data.HotelInfoList.HotelInfo;
     for (var i = 0; i < hotelInfo.length; i++) {
-        console.log(hotelInfo[i].Name);
+        //console.log(hotelInfo[i].Name);
+
+        var latLng = {lat: parseFloat(hotelInfo[i].Location.GeoLocation.Latitude),
+                        lng: parseFloat(hotelInfo[i].Location.GeoLocation.Longitude)};
+        var marker = addMarkerHotel(latLng, map);
+        hotelMap[i] = marker;
+        $('#hotelResults .list-group').append('<button type="button" id="' + i + '" class="list-group-item text-left">' + hotelInfo[i].Name + '</button>');
     }
 }
 
 function findHotels(numHotels, lat, long) {
     $.getJSON('http://terminal2.expedia.com/x/hotels?maxhotels=' + numHotels + '&location=' + lat +
-    '%2C' + long + '&radius=5km&apikey=' + API_KEY, function (obj) {
+    '%2C' + long + '&radius=25km&sort=starrating&apikey=' + API_KEY, function (obj) {
+        console.log('http://terminal2.expedia.com/x/hotels?maxhotels=' + numHotels + '&location=' + lat +
+        '%2C' + long + '&radius=25km&sort=starrating&apikey=' + API_KEY);
         processHotels(obj);
     });
 }
