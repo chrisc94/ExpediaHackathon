@@ -76,10 +76,10 @@ $(document).ready(function() {
     });
 
     $('#hotelList').on('click', 'button.list-group-item', function() {
-        if ($(this).css('background-color') == "yellow") {
-            $(this).css('background-color', 'yellow');
-        } else {
+        if (this.style.backgroundColor == 'yellow') {
             $(this).css('background-color', 'white');
+        } else {
+            $(this).css('background-color', 'yellow');
         }
         toggleBounce(hotelMap[this.id]);
     });
