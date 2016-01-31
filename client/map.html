@@ -25,7 +25,7 @@
    </head>
    <body>
    <!-- overall container --> 
-   <div class="container">
+   <div class="container" style="background-color: #EEE2C2; opacity: 0.99;">
     <p></p>
     <!-- header -->
     <div class="row">
@@ -34,6 +34,7 @@
           <input id="location" type="text" class="form-control" placeholder="Location">
           <input id="start" type="text" class="form-control" placeholder="StartTime">
           <input id="end" type="text" class="form-control" placeholder="EndTime">
+          <button id="submitBtn" type="submit" class="btn btn-default">Submit</button>
         </div>
       </center>
       <center>
@@ -44,7 +45,6 @@
           <input id="keywords" type="text" class="form-control" placeholder="search for activities"></h2>
         </div>
         <div class="form-group form-inline">
-          <button id="submitBtn" type="submit" class="btn btn-default" style="margin-left: 600px">Submit</button>
         </div>
       </center>
     </div>
@@ -57,9 +57,6 @@
               <ul class="list-group">
               </ul>
             </div>
-            <input id="minPrice" type="text" class="form-control" placeholder="Minimum price">
-            <input id="maxPrice" type="text" class="form-control" placeholder="Maximum price">
-            <input id="keywords" type="text" class="form-control" placeholder="search for activities">            
           </div>
           <div class="col-md-5">
             <div id="map"></div>
