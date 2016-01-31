@@ -23,27 +23,38 @@
       <![endif]-->
    </head>
    <body>
-
+   <!-- overall container --> 
    <div class="container">
+    <p></p>
+    <!-- header -->
+    <div class="row">
+      <center>
+        <div class="form-group form-inline">
+          <input id="location" type="text" class="form-control" placeholder="Location">
+          <input id="start" type="text" class="form-control" placeholder="StartTime">
+          <input id="end" type="text" class="form-control" placeholder="EndTime">
+        </div>
+        <center>
+        <div class="form-group form-inline">
+          <h2><span class="label label-default">Filters:</span>
+          <input id="minPrice" type="text" class="form-control" placeholder="Minimum price">
+           <input id="maxPrice" type="text" class="form-control" placeholder="Maximum price">
+          <input id="keywords" type="text" class="form-control" placeholder="search for activities"></h2>
+        </div>
+        <div class="form-group form-inline">
+          <button id="submitBtn" type="submit" class="btn btn-default" style="margin-left: 600px">Submit</button>
+        </div>
+      </center>
+    </div>
 
-    <center>
-      <div class="form-group form-inline">
-        <input id="location" type="text" class="form-control" placeholder="Location">
-        <input id="start" type="text" class="form-control" placeholder="StartTime">
-        <input id="end" type="text" class="form-control" placeholder="EndTime">
-        <button id="submitBtn" type="submit" class="btn btn-default">Submit</button>
-      </div>
-    </center>
+    <!-- body -->
     <div class="row">
           <div class="col-md-4">
             <h2>Things To Do</h2>
             <div id="searchResults">
               <ul class="list-group">
               </ul>
-            </div>
-            <input id="minPrice" type="text" class="form-control" placeholder="Minimum price">
-            <input id="maxPrice" type="text" class="form-control" placeholder="Maximum price">
-            <input id="keywords" type="text" class="form-control" placeholder="search for activities">            
+            </div>        
           </div>
           <div class="col-md-7">
             <div id="map"></div>
