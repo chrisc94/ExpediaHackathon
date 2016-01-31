@@ -65,6 +65,47 @@ $(document).ready(function() {
 	});
 */
 	$("#submitBtn").click(function(){
+
+
+		//jquery ui stuff
+		var location = $('#location').val();
+    	var startDate = $('#start').datepicker('getDate');
+    	var endDate = $('#end').datepicker('getDate');
+    	if (startDate == null) {
+    		startDate = new Date();
+    	}
+
+    	if (endDate == null) {
+    		endDate = new Date();
+    	}
+    	if (location == "") {
+        	alert("Please give us a destination!");
+        } else {
+        	var startMonth = (startDate.getMonth() + 1);
+        	var startDay = startDate.getDate();
+        	var endMonth = (endDate.getMonth() + 1);
+        	var endDay = endDate.getDate();
+        	if ((startDate.getMonth() + 1) < 10) {
+        		startMonth = "0" + startMonth;
+        	}
+        	if ((endDate.getMonth() + 1) < 10) {
+        		endMonth = "0" + endMonth;
+        	}
+        	if (startDate.getDate() < 10) {
+        		startDay = "0" + startDay;
+        	}
+        	if (endDate.getDate() < 10) {
+        		endDay = "0" + endDay;
+        	}
+
+        	var startString = startDate.getFullYear() + "-" + startMonth + "-" + startDay;
+        	var endString = endDate.getFullYear() + "-" + endMonth + "-" + endDay;	 
+        	localStorage.setItem("search", location);
+        	localStorage.setItem("start", startString);
+        	localStorage.setItem("end", endString);
+        }
+
+
         //totalCost = 0;
         //$(".panel-footer").text("Total Cost: " + totalCost);
 		console.log($("#start").val());
