@@ -117,6 +117,7 @@ function processActivities(data) {
     for (var i = markers.length - 1; i >= 0; i--) {
         if (Math.abs(Math.sqrt(Math.pow(markers[i].getPosition().lat(), 2) + Math.pow(markers[i].getPosition().lng(), 2)) -
                 Math.sqrt(Math.pow(avgLat, 2) + Math.pow(avgLong, 2))) > LIMIT) {
+            markers[i].setMap(null);
             markers.splice(i, 1);
         } else {
             //console.log(Math.sqrt(Math.pow(markers[i].getPosition().lat(), 2) + Math.pow(markers[i].getPosition().lng(), 2))
