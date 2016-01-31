@@ -151,6 +151,12 @@ $(document).ready(function() {
         }
         toggleBounce(hotelMap[this.id]);
     });
+
+    $('#cancelButton').click(function() {
+        totalCost = 0;
+        $(".panel-footer").text("Total Cost: " + totalCost);
+        $("#myTrip button.list-group-item").remove();
+    });
 });
 
 
