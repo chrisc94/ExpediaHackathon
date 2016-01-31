@@ -14,6 +14,10 @@ $(document).ready(function() {
 			localStorage.getItem("end"));
 	}
 
+	$("#menu-button").click(function() {
+		
+	});
+
 
 	$("#submitBtn").click(function(){
 		console.log($("#start").val());

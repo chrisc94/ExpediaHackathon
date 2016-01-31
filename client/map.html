@@ -13,6 +13,12 @@
       <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
       <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 
+          <link href="css/stylish-portfolio.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
        <script type="text/javascript" src="expedia.js" ></script>
        <script type="text/javascript" src="js/backstretch.min.js" ></script>
@@ -24,11 +30,37 @@
       <![endif]-->
    </head>
    <body>
+
+  <header id="header" style="background-color: red;">
+    <div class="container" style="display: none;">
+      <p>&nbsp</p>
+      <center>
+          <div class="form-group form-inline">
+            <input id="location" type="text" class="form-control" placeholder="Location">
+            <input id="start" type="text" class="form-control" placeholder="StartTime">
+            <input id="end" type="text" class="form-control" placeholder="EndTime">
+            <button id="submitBtn" type="submit" class="btn btn-default">Submit</button>
+          </div>
+        </center>
+        <center>
+          <div class="form-group form-inline">
+            <h2><span class="label label-default">Filters:</span>
+            <input id="minPrice" type="text" class="form-control" placeholder="Minimum price">
+             <input id="maxPrice" type="text" class="form-control" placeholder="Maximum price">
+            <input id="keywords" type="text" class="form-control" placeholder="search for activities"></h2>
+          </div>
+          <div class="form-group form-inline">
+          </div>
+        </center>
+      </div>
+  </header><!-- /header -->
+
    <!-- overall container --> 
    <div class="container" style="background-color: #EEE2C2; opacity: 0.99;">
+    <center><button id="menu-button" style="position: absolute;">Search</button></center>
     <p></p>
     <!-- header -->
-    <div class="row">
+    <div class="row" style="display: none;">
       <center>
         <div class="form-group form-inline">
           <input id="location" type="text" class="form-control" placeholder="Location">
