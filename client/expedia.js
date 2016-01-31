@@ -26,6 +26,23 @@ $(document).ready(function() {
 			localStorage.getItem("end"));
 	}
 
+	//var object = {body: [{a: "a", b: 1}, {a: "b", b: 2}]};
+	//var json = JSON.parse(JSON.stringify(object));
+	//console.log(json);
+	$('#postcall').click(function() {
+		console.log("funciton called");
+		var object = {body: []};
+		$('.list-group-item').each(function() {
+			var id = intParse($(this).attr("id"));
+			var activity = activities[id];
+			// {body: [{title: the title, price: float?, badge: the badge}]}
+			// object.body.push(new object)
+		})
+		/*$.post("https://obscure-temple-85981.herokuapp.com/", json, function(data) {
+			console.log(data);
+		})*/
+	});
+
     $( "#filterBtn" ).click(function() {
         $("#filterSection").toggle();
     });
@@ -171,12 +188,20 @@ function processActivities(data) {
     var minMax = $("#price").slider("getValue").val().split(",");
     var minPrice = parseInt(minMax[0]);
     var maxPrice = parseInt(minMax[1]);
-/*
+    console.log('min price ' + minPrice);
+/*	
     activities = filterActivities($("#minPrice").val(),
     				$("#maxPrice").val(),
     				$("#keywords").val(),
     				activities);
 */
+	if (isNaN(minPrice)) {
+		minPrice = 0;
+	}
+
+	if (isNaN(maxPrice)) {
+		maxPrice = 1000;
+	}
     activities = filterActivities(minPrice,
                     maxPrice,
                     $("#keywords").val(),
