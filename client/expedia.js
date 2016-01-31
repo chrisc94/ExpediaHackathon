@@ -7,10 +7,16 @@ var markerMap = [];
 var hotelMap = [];
 
 $(window).load(function(){
+    $("#filterSection").hide();
     initialize()
 });
 
 $(document).ready(function() {
+    $.getScript("js/bootstrap-slider.js");
+    $("#price").slider({
+        value: [0, 1000]
+    });
+
 	if (typeof(Storage) !== "undefined") {
 		$('#location').val(localStorage.getItem("search"));
 		$('#start').val(localStorage.getItem("start"));
@@ -20,6 +26,11 @@ $(document).ready(function() {
 			localStorage.getItem("end"));
 	}
 
+    $( "#filterBtn" ).click(function() {
+        $("#filterSection").toggle();
+    });
+
+/*
 	$("#menu-button").click(function() {
 		$('#headerContainer').toggle();
 
@@ -31,10 +42,11 @@ $(document).ready(function() {
 			$("#menu-button").html("&#8679 &#8679 &#8679");
 			$("#menu-button").val("");
 		}
-		
 	});
-
+*/
 	$("#submitBtn").click(function(){
+        //totalCost = 0;
+        //$(".panel-footer").text("Total Cost: " + totalCost);
 		console.log($("#start").val());
           findActivities($("#location").val(), $("#start").val(), 
           	$("end").val());
@@ -47,7 +59,7 @@ $(document).ready(function() {
         toggleBounce(markerMap[this.id]);
         var results = activities[this.id].fromPrice.split('$');
         totalCost += parseInt(results[1]); 
-        $("#cost").text("Total Cost: " + totalCost);
+        $(".panel-footer").text("Total Cost: " + totalCost);
         console.log("totalCost: " + totalCost);
     	this.remove();
     });
@@ -58,7 +70,7 @@ $(document).ready(function() {
         toggleBounce(markerMap[this.id]);
         var results = activities[this.id].fromPrice.split('$');
         totalCost -= parseInt(results[1]); 
-        $("#cost").text("Total Cost: " + totalCost);
+        $(".panel-footer").text("Total Cost: " + totalCost);
         console.log("totalCost" + totalCost);
         this.remove();
     });
@@ -156,11 +168,19 @@ function processActivities(data) {
     $('#searchResults .list-group .list-group-item').remove();
     activities = data.activities;
 
-
+    var minMax = $("#price").slider("getValue").val().split(",");
+    var minPrice = parseInt(minMax[0]);
+    var maxPrice = parseInt(minMax[1]);
+/*
     activities = filterActivities($("#minPrice").val(),
     				$("#maxPrice").val(),
     				$("#keywords").val(),
     				activities);
+*/
+    activities = filterActivities(minPrice,
+                    maxPrice,
+                    $("#keywords").val(),
+                    activities);
 
     console.log(activities);
 

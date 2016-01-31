@@ -1,5 +1,10 @@
-body { padding-top: 100 px;}
+body { 
+	background-color: white;
+	padding-top: 100 px;
+}
+
 #map { height: 500px; }
+
 .list-group 
 {
 	height: 200px;
@@ -19,3 +24,14 @@ body { padding-top: 100 px;}
 #cost{
 	background:white;
 }
+
+.panel-heading h3 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: normal;
+    width: 75%;
+    padding-top: 8px;
+}
+
+
