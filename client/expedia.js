@@ -35,15 +35,17 @@ $(document).ready(function() {
 	$('#postcall').click(function() {
 		console.log("funciton called");
 		var object = {body: []};
-		$('.list-group-item').each(function() {
-			var id = intParse($(this).attr("id"));
+		$('#myTrip').each(function() {
+			var id = parseInt($(this).attr("id"));
 			var activity = activities[id];
-			// {body: [{title: the title, price: float?, badge: the badge}]}
-			// object.body.push(new object)
+			var child = {title: activity.title, parse: activity.fromPrice, badge: activity.recommendationScore };
+			object.body.push(child);
 		})
-		/*$.post("https://obscure-temple-85981.herokuapp.com/", json, function(data) {
+		var json = JSON.parse(JSON.stringify(object));
+		$.post("https://obscure-temple-85981.herokuapp.com/", json, function(data) {
 			console.log(data);
-		})*/
+			window.location.href = 'comparision.html?a=' + data;
+		})
 	});
 
     $( "#filterBtn" ).click(function() {
