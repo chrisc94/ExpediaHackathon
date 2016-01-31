@@ -240,6 +240,9 @@ function toggleBounce(marker) {
 
 function processActivities(data) {
     $('#searchResults .list-group .list-group-item').remove();
+    $('#trip .list-group .list-group-item').remove();
+    totalCost = 0;
+    $(".panel-footer").text("Total Cost: " + totalCost);
     activities = data.activities;
 
     var minMax = $("#price").slider("getValue").val().split(",");
