@@ -2,6 +2,11 @@ var API_KEY = 'fWhBM0UdCM64tEW1xOqCadzjj5v8Ea23';
 
 //GLOBAL VARIABLE
 var activities;
+var markerMap = [];
+
+$(window).load(function(){
+    initialize()
+});
 
 $(document).ready(function() {
 	if (typeof(Storage) !== "undefined") {
@@ -17,7 +22,6 @@ $(document).ready(function() {
 		$('#headerContainer').toggle();
 	});
 
-
 	$("#submitBtn").click(function(){
 		console.log($("#start").val());
           findActivities($("#location").val(), $("#start").val(), 
@@ -27,7 +31,10 @@ $(document).ready(function() {
     });
 
     $('#itemList').on('click', 'button.list-group-item', function(){
+        //console.log(document.getElementById("myTrip").id);
+        $("#myTrip").append('<button type="button" id="' + this.id + '" class="list-group-item text-left"><span class="badge">' + activities[this.id].fromPrice + '</span>' + activities[this.id].title + '</button>');
     	console.log("Hi seahawks");
+        toggleBounce(markerMap[this.id]);
     	this.remove();
     });
 });
@@ -85,9 +92,18 @@ function addMarker(location, map) {
     var marker = new google.maps.Marker({
         position: location,
         label: labels[labelIndex++ % labels.length],
+        animation: google.maps.Animation.DROP,
         map: map
     });
     return marker;
+}
+
+function toggleBounce(marker) {
+    if (marker.getAnimation() !== null) {
+        marker.setAnimation(null);
+    } else {
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+    }
 }
 
 function processActivities(data) {
@@ -134,6 +150,7 @@ function processActivities(data) {
             //console.log(Math.sqrt(Math.pow(markers[i].getPosition().lat(), 2) + Math.pow(markers[i].getPosition().lng(), 2))
              //  - Math.sqrt(Math.pow(avgLat, 2) + Math.pow(avgLong, 2)));
             bounds.extend(markers[i].getPosition());
+            markerMap[i] = markers[i];
             $('#searchResults .list-group').append('<button type="button" id="' + i + '" class="list-group-item text-left"><span class="badge">' + activities[i].fromPrice + '</span>' + activities[i].title + '</button>');
         }
     }
@@ -149,7 +166,6 @@ function processHotels(data) {
 }
 
 function findHotels(numHotels, lat, long) {
-    // http://terminal2.expedia.com/x/hotels?maxhotels=10&location=47.6063889%2C-122.3308333&radius=10km&apikey=fWhBM0UdCM64tEW1xOqCadzjj5v8Ea23
     $.getJSON('http://terminal2.expedia.com/x/hotels?maxhotels=' + numHotels + '&location=' + lat +
     '%2C' + long + '&radius=5km&apikey=' + API_KEY, function (obj) {
         processHotels(obj);
