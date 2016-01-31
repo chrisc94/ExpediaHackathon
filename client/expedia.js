@@ -8,7 +8,7 @@ var hotelMap = [];
 
 $(window).load(function(){
     $("#filterSection").hide();
-    initialize()
+    //initialize()
 });
 
 $(document).ready(function() {
@@ -22,6 +22,7 @@ $(document).ready(function() {
 		$('#start').val(localStorage.getItem("start"));
 		$('#end').val(localStorage.getItem("end"));
 		console.log(localStorage);
+        initialize("bam,bam");
 		findActivities(localStorage.getItem("search"), localStorage.getItem("start"), 
 			localStorage.getItem("end"));
 	}
@@ -155,6 +156,10 @@ $(document).ready(function() {
     $('#cancelButton').click(function() {
         totalCost = 0;
         $(".panel-footer").text("Total Cost: " + totalCost);
+        for (var m in markerMap) {
+            markerMap[m].setAnimation(null);
+        }
+
         $("#myTrip button.list-group-item").remove();
     });
 });
@@ -240,6 +245,9 @@ function toggleBounce(marker) {
 
 function processActivities(data) {
     $('#searchResults .list-group .list-group-item').remove();
+    $('#trip .list-group .list-group-item').remove();
+    totalCost = 0;
+    $(".panel-footer").text("Total Cost: " + totalCost);
     activities = data.activities;
 
     var minMax = $("#price").slider("getValue").val().split(",");
