@@ -28,16 +28,6 @@ var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var labelIndex = 0;
 
 var map;
-//var bounds = new google.maps.LatLngBounds();
-//var infowindow = new google.maps.InfoWindow();
-
-function initialize() {
-    var bangalore = {lat: 12.97, lng: 77.59};
-    map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12,
-        center: bangalore
-    });
-}
 
 function initialize(latlong) {
     //var res = latlong.split(",");
@@ -61,26 +51,35 @@ function addMarker(location, map) {
 }
 
 function processActivities(data) {
-    //console.log("data: " + data);
     $('#searchResults .list-group .list-group-item').remove();
     var activities = data.activities;
-    console.log(data.activities);
+
+
     activities = filterActivities($("#minPrice").val(),
     				$("#maxPrice").val(),
     				$("#keywords").val(),
     				activities);
-    for (var i = 0; i < 26/*activities.length*/; i++) {
-        $('#searchResults .list-group').append('<li class="list-group-item">' + activities[i].title + '</li>');
-        console.log(activities[i].title);
+
+    var markers = [];
+    for (var i = 0; i < 26; i++) {
+//        $('#searchResults .list-group').append('<li class="list-group-item">' + '<span class="badge">' + 
+  //      	activities[i].fromPrice + '</span>' + activities[i].title + '</li>');
+		
+		$('#searchResults .list-group').append('<button type="button" class="list-group-item text-left"><span class="badge">' + activities[i].fromPrice + '</span>' + activities[i].title + '</button>');
 
         var coords = activities[i].latLng.split(",");
         var latLng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
-        console.log(coords);
-        console.log(latLng);
+        //console.log(coords);
+        //console.log(latLng);
         var marker = addMarker(latLng, map);
-        //bounds.extend(marker.position);
-        //map.fitBounds(bounds);
+        markers.push(marker);
     }
+
+    var bounds = new google.maps.LatLngBounds();
+    for (var i = 0; i < markers.length; i++) {
+        bounds.extend(markers[i].getPosition());
+    }
+    map.fitBounds(bounds);
 }
 
 function processHotels(data) {
@@ -107,8 +106,6 @@ function findActivities(loc, startDate, endDate) {
         processActivities(obj);
     });
 }
-
-//findActivities(loc, startDate, endDate);
 
 // Takes in a minPrice, maxPrice, and an array of activities objects and returns an array
 // of activities objects that have a price that is above minPrice and below maxPrice.

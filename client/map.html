@@ -50,12 +50,19 @@
 
     <!-- body -->
     <div class="row">
-      <div class="col-md-6">
-        <h2>Things To Do</h2>
-        <div id="searchResults">
-          <ul class="list-group">
-          </ul>
-        </div>        
+          <div class="col-md-7">
+            <h2>Things To Do</h2>
+            <div id="searchResults">
+              <ul class="list-group">
+              </ul>
+            </div>
+            <input id="minPrice" type="text" class="form-control" placeholder="Minimum price">
+            <input id="maxPrice" type="text" class="form-control" placeholder="Maximum price">
+            <input id="keywords" type="text" class="form-control" placeholder="search for activities">            
+          </div>
+          <div class="col-md-4">
+            <div id="map"></div>
+          </div>
       </div>
       <div class="col-md-6">
         <div id="map"></div>
