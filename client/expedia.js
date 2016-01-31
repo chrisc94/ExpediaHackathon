@@ -1,8 +1,7 @@
 var API_KEY = 'fWhBM0UdCM64tEW1xOqCadzjj5v8Ea23';
 
-var loc = 'Seattle';
-var startDate = '2015-08-08';
-var endDate = '2015-08-08';
+//GLOBAL VARIABLE
+var activities;
 
 $(document).ready(function() {
 	if (typeof(Storage) !== "undefined") {
@@ -26,7 +25,14 @@ $(document).ready(function() {
         initialize("bam,bam");
         findActivities($("#location").val(), $("#start").val(), $("end").val());
     });
+
+    $(".list-group-item").click(function(){
+    	console.log("Hi seahawks");
+    	this.addClass('disabled');
+    });
 });
+
+
 
 var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var labelIndex = 0;
@@ -86,7 +92,7 @@ function addMarker(location, map) {
 
 function processActivities(data) {
     $('#searchResults .list-group .list-group-item').remove();
-    var activities = data.activities;
+    activities = data.activities;
 
 
     activities = filterActivities($("#minPrice").val(),
@@ -101,6 +107,7 @@ function processActivities(data) {
     	if (i >= activities.length) {
     		break;
     	}
+
         var coords = activities[i].latLng.split(",");
         var latLng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
         var marker = addMarker(latLng, map);
@@ -121,12 +128,13 @@ function processActivities(data) {
     for (var i = markers.length - 1; i >= 0; i--) {
         if (Math.abs(Math.sqrt(Math.pow(markers[i].getPosition().lat(), 2) + Math.pow(markers[i].getPosition().lng(), 2)) -
                 Math.sqrt(Math.pow(avgLat, 2) + Math.pow(avgLong, 2))) > LIMIT) {
+            markers[i].setMap(null);
             markers.splice(i, 1);
         } else {
             //console.log(Math.sqrt(Math.pow(markers[i].getPosition().lat(), 2) + Math.pow(markers[i].getPosition().lng(), 2))
              //  - Math.sqrt(Math.pow(avgLat, 2) + Math.pow(avgLong, 2)));
             bounds.extend(markers[i].getPosition());
-            $('#searchResults .list-group').append('<button type="button" class="list-group-item text-left"><span class="badge">' + activities[i].fromPrice + '</span>' + activities[i].title + '</button>');
+            $('#searchResults .list-group').append('<button type="button" id="' + i + '" class="list-group-item text-left"><span class="badge">' + activities[i].fromPrice + '</span>' + activities[i].title + '</button>');
         }
     }
     map.fitBounds(bounds);
