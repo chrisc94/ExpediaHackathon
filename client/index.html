@@ -61,7 +61,7 @@
             <a id="button" class="btn btn-dark btn-lg wow animated bounceInLeft">Find Out More</a>
             <div style="position: relative;">
 	            <div id="canvasDiv" style=""></div>
-	            <div style="position: absolute; top:110px; left: 700px; color: black;"><h2><b>Select your adventure!</b></h2></div>
+	            <div style="position: absolute; top:110px; left: 700px; color: black;"><h2 id="costs">Select your adventure!</h2></div>
             </div>
         </div>
     </header>
@@ -94,7 +94,7 @@
             		endDate = new Date();
             	}
             	if (location == "") {
-	            	alert("Please give us a destination!");
+            		$('#costs').text("Please type in a location!");
 	            } else {
 	            	var startMonth = (startDate.getMonth() + 1);
 	            	var startDay = startDate.getDate();
