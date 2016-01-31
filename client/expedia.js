@@ -26,7 +26,7 @@ $(document).ready(function() {
         findActivities($("#location").val(), $("#start").val(), $("end").val());
     });
 
-    $(".list-group-item").click(function(){
+    $('#itemList').on('click', 'button.list-group-item', function(){
     	console.log("Hi seahawks");
     	this.addClass('disabled');
     });
