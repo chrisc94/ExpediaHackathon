@@ -14,6 +14,11 @@ $(document).ready(function() {
 		console.log("load");
 		$.get("https://obscure-temple-85981.herokuapp.com/find/" + a, function(data) {
 			console.log(data);
+			for (var i = 0; i < data.body.length; i++) {
+				var body = data.body[i];
+				$("#myTrip").append('<button type="button" class="list-group-item text-left"><span class="score badge">' + body.parse + '</span>' +' <span class="score badge">'+ body.badge  +"</span>" + body.title + '</button>');	
+			}
+     
 		});
 	}
 

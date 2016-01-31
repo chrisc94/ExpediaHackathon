@@ -35,16 +35,19 @@ $(document).ready(function() {
 	$('#postcall').click(function() {
 		console.log("funciton called");
 		var object = {body: []};
-		$('#myTrip').each(function() {
+		$('.abc').each(function() {
 			var id = parseInt($(this).attr("id"));
 			var activity = activities[id];
+			console.log(activity);
+			console.log("id " + id);
 			var child = {title: activity.title, parse: activity.fromPrice, badge: activity.recommendationScore };
 			object.body.push(child);
 		})
+		console.log(object)
 		var json = JSON.parse(JSON.stringify(object));
 		$.post("https://obscure-temple-85981.herokuapp.com/", json, function(data) {
 			console.log(data);
-			window.location.href = 'comparision.html?a=' + data;
+			window.location.href = 'result.html?a=' + data;
 		})
 	});
 
@@ -118,7 +121,7 @@ $(document).ready(function() {
     });
 
     $('#itemList').on('click', 'button.list-group-item', function(){
-        $("#myTrip").append('<button type="button" id="' + this.id + '" class="list-group-item text-left"><span class="badge">' + activities[this.id].fromPrice + '</span>'  + ' <span class="score badge">'+ activities[this.id].recommendationScore  +"</span>" + '<b>' + labels[this.id] + '</b> ' + activities[this.id].title + '</button>');
+        $("#myTrip").append('<button type="button" id="' + this.id + '" class="list-group-item text-left abc"><span class="badge">' + activities[this.id].fromPrice + '</span>'  + ' <span class="score badge">'+ activities[this.id].recommendationScore  +"</span>" + '<b>' + labels[this.id] + '</b> ' + activities[this.id].title + '</button>');
         toggleBounce(markerMap[this.id]);
         var results = activities[this.id].fromPrice.split('$');
         totalCost += parseInt(results[1]); 
