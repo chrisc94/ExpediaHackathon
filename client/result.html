@@ -35,29 +35,7 @@
    <!-- overall container --> 
    <div class="container" style="background-color: #EFF0F4; opacity: 0.99; box-shadow: 0px 0px 25px #888888;">
     <p></p>
-    <button id="postcall">Postcall</button>
-    <button id="getcall">Getcall</button>
     <!-- header -->
-    <div class="row" style="display: none;">
-      <center>
-        <div class="form-group form-inline">
-          <input id="location" type="text" class="form-control" placeholder="Location">
-          <input id="start" type="text" class="form-control" placeholder="StartTime">
-          <input id="end" type="text" class="form-control" placeholder="EndTime">
-          <button id="submitBtn" type="submit" class="btn btn-default">Submit</button>
-        </div>
-      </center>
-      <center>
-        <div class="form-group form-inline">
-          <h2><span class="label label-default">Filters:</span>
-          <input id="minPrice" type="text" class="form-control" placeholder="Minimum price">
-           <input id="maxPrice" type="text" class="form-control" placeholder="Maximum price">
-          <input id="keywords" type="text" class="form-control" placeholder="search for activities"></h2>
-        </div>
-        <div class="form-group form-inline">
-        </div>
-      </center>
-    </div>
 
     <!-- body -->
     <div class="row">
@@ -66,21 +44,25 @@
               <div class="panel-heading">Trip</div>
               <ul id="myTrip" class="list-group"></ul>
               <div class="panel-footer">Total Cost: 
-
-              <button aria-label="Right Align" type="button" class="btn btn-default pull-right"><span class="glyphicon glyphicon-minus"></span></button>
-              <button aria-label="Right Align" type="button" class="btn btn-default pull-right"><span class="glyphicon glyphicon-plus"></span></button>
               </div>   
-            </div>            
+            </div>
+            <div style="position: relative;">
+              <div id="canvasDiv" style=""></div>
+              <div style="position: absolute; top:90px; left: 380px; color: black;"><h2><b>Wow! What a great deal!</b></h2></div>
+            </div>
+            <center><a href="map.html" class="btn btn-primary">Return</a></center>            
           </div>
           <div class="col-md-5">
             <div id="map"></div>
           </div>
       </div>
     </div>
-  </div>
 
 
-  
+    <script src="js/picture.js"></script>
+    <script type="text/javascript">
+       prepareCanvas(document.getElementById("canvasDiv"), 690, 220);
+    </script>
     <script type="text/javascript">
       // In the following example, markers appear when the user clicks on the map.
       // Each marker is labeled with a single alphabetical character.
