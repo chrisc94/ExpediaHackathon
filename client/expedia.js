@@ -90,9 +90,13 @@ function processActivities(data) {
     				$("#keywords").val(),
     				activities);
 
+    console.log(activities);
+
     var markers = [];
     for (var i = 0; i < 26; i++) {
-        console.log(activities[i].title);
+    	if (i >= activities.length) {
+    		break;
+    	}
         var coords = activities[i].latLng.split(",");
         var latLng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
         var marker = addMarker(latLng, map);
