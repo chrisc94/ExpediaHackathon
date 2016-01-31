@@ -1,6 +1,7 @@
 var API_KEY = 'fWhBM0UdCM64tEW1xOqCadzjj5v8Ea23';
 
 //GLOBAL VARIABLE
+var totalCost = 0;
 var activities;
 var markerMap = [];
 
@@ -31,11 +32,24 @@ $(document).ready(function() {
     });
 
     $('#itemList').on('click', 'button.list-group-item', function(){
-        //console.log(document.getElementById("myTrip").id);
-        $("#myTrip").append('<button type="button" id="' + this.id + '" class="list-group-item text-left"><span class="badge">' + activities[this.id].fromPrice + '</span>' + activities[this.id].title + '</button>');
-    	console.log("Hi seahawks");
+        $("#myTrip").append('<button type="button" id="' + this.id + '" class="list-group-item text-left"><span class="badge">' + activities[this.id].fromPrice + '</span>'  + ' <span class="score badge">'+ activities[this.id].recommendationScore  +"</span>" + activities[this.id].title + '</button>');
         toggleBounce(markerMap[this.id]);
+        var results = activities[this.id].fromPrice.split('$');
+        totalCost += parseInt(results[1]); 
+        $("#cost").text("Total Cost: " + totalCost);
+        console.log("totalCost: " + totalCost);
     	this.remove();
+    });
+
+    $('#myTrip').on('click', 'button.list-group-item', function(){
+        //console.log(document.getElementById("myTrip").id);
+        $("#itemList").append('<button type="button" id="' + this.id + '" class="list-group-item text-left"><span class="badge">' + activities[this.id].fromPrice + '</span>' + ' <span class="score badge">'+ activities[this.id].recommendationScore  +"</span>" + activities[this.id].title + '</button>');
+        toggleBounce(markerMap[this.id]);
+        var results = activities[this.id].fromPrice.split('$');
+        totalCost -= parseInt(results[1]); 
+        $("#cost").text("Total Cost: " + totalCost);
+        console.log("totalCost" + totalCost);
+        this.remove();
     });
 });
 
@@ -151,7 +165,8 @@ function processActivities(data) {
              //  - Math.sqrt(Math.pow(avgLat, 2) + Math.pow(avgLong, 2)));
             bounds.extend(markers[i].getPosition());
             markerMap[i] = markers[i];
-            $('#searchResults .list-group').append('<button type="button" id="' + i + '" class="list-group-item text-left"><span class="badge">' + activities[i].fromPrice + '</span>' + activities[i].title + '</button>');
+            $('#searchResults .list-group').append('<button type="button" id="' + i 
+                + '" class="list-group-item text-left"><span class="badge">' + activities[i].fromPrice + '</span>' + ' <span class="score badge">'+ activities[i].recommendationScore  + "</span>" + activities[i].title + '</button>');
         }
     }
     map.fitBounds(bounds);

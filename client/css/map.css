@@ -10,3 +10,12 @@ body { padding-top: 100 px;}
 {
 	width: 100%;
 }
+
+.score .badge
+{
+	background:blue;
+}
+
+#cost{
+	background:white;
+}
