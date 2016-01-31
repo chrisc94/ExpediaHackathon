@@ -3,6 +3,10 @@ var API_KEY = 'fWhBM0UdCM64tEW1xOqCadzjj5v8Ea23';
 //GLOBAL VARIABLE
 var activities;
 
+$(window).load(function(){
+    initialize()
+});
+
 $(document).ready(function() {
 	if (typeof(Storage) !== "undefined") {
 		$('#location').val(localStorage.getItem("search"));
@@ -17,7 +21,6 @@ $(document).ready(function() {
 		$('#headerContainer').toggle();
 	});
 
-
 	$("#submitBtn").click(function(){
 		console.log($("#start").val());
           findActivities($("#location").val(), $("#start").val(), 
@@ -26,9 +29,8 @@ $(document).ready(function() {
         findActivities($("#location").val(), $("#start").val(), $("end").val());
     });
 
-    $('#itemList').on('click', 'button.list-group-item', function(){
+    $(".list-group-item").click(function(){
     	console.log("Hi seahawks");
-    	this.addClass('disabled');
     });
 });
 
