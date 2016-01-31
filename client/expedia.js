@@ -22,10 +22,12 @@ $(document).ready(function() {
         initialize("bam,bam");
         findActivities($("#location").val(), $("#start").val(), $("end").val());
     });
-})
+});
 
 var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var labelIndex = 0;
+
+var LIMIT = 1.0;
 
 var map;
 
@@ -90,22 +92,34 @@ function processActivities(data) {
 
     var markers = [];
     for (var i = 0; i < 26; i++) {
-//        $('#searchResults .list-group').append('<li class="list-group-item">' + '<span class="badge">' + 
-  //      	activities[i].fromPrice + '</span>' + activities[i].title + '</li>');
-		
-		$('#searchResults .list-group').append('<button type="button" class="list-group-item text-left"><span class="badge">' + activities[i].fromPrice + '</span>' + activities[i].title + '</button>');
-
+        console.log(activities[i].title);
         var coords = activities[i].latLng.split(",");
         var latLng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
-        //console.log(coords);
-        //console.log(latLng);
         var marker = addMarker(latLng, map);
         markers.push(marker);
     }
 
-    var bounds = new google.maps.LatLngBounds();
+    var totalLat = 0.0;
+    var totalLong = 0.0;
     for (var i = 0; i < markers.length; i++) {
-        bounds.extend(markers[i].getPosition());
+        totalLat += markers[i].getPosition().lat();
+        totalLong += markers[i].getPosition().lng();
+    }
+
+    var avgLat = totalLat / markers.length;
+    var avgLong = totalLong / markers.length;
+
+    var bounds = new google.maps.LatLngBounds();
+    for (var i = markers.length - 1; i >= 0; i--) {
+        if (Math.abs(Math.sqrt(Math.pow(markers[i].getPosition().lat(), 2) + Math.pow(markers[i].getPosition().lng(), 2)) -
+                Math.sqrt(Math.pow(avgLat, 2) + Math.pow(avgLong, 2))) > LIMIT) {
+            markers.splice(i, 1);
+        } else {
+            //console.log(Math.sqrt(Math.pow(markers[i].getPosition().lat(), 2) + Math.pow(markers[i].getPosition().lng(), 2))
+             //  - Math.sqrt(Math.pow(avgLat, 2) + Math.pow(avgLong, 2)));
+            bounds.extend(markers[i].getPosition());
+            $('#searchResults .list-group').append('<button type="button" class="list-group-item text-left"><span class="badge">' + activities[i].fromPrice + '</span>' + activities[i].title + '</button>');
+        }
     }
     map.fitBounds(bounds);
 }
@@ -154,7 +168,7 @@ function filterByPrice(minPrice, maxPrice, activitiesJsonObj) {
 
 // Returns the price of the passed in activity.
 function getPriceOfActivity(activityObj) {
-    var price = activityObj.fromPrice
+    var price = activityObj.fromPrice;
     //document.getElementById("test").innerHTML = price;
     var num = price.slice(1);
     return parseInt(num);
