@@ -98,7 +98,7 @@ function redraw() {
 	
   drawEllipse(x + 47, y - 68 - breathAmt, 8, curEyeHeight); // Left Eye
   drawEllipse(x + 58, y - 68 - breathAmt, 8, curEyeHeight); // Right Eye
-  drawBubble(context, 300, 400, 300, 300, 10);
+  drawBubble(context, x + 110, y - 90, 320, 100, 10);
   context.font = "bold 12px sans-serif";
   //context.fillText("fps: " + curFPS + "/" + fps + " (" + numFramesDrawn + ")", 40, 200);
   ++numFramesDrawn;
