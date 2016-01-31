@@ -155,6 +155,10 @@ $(document).ready(function() {
     $('#cancelButton').click(function() {
         totalCost = 0;
         $(".panel-footer").text("Total Cost: " + totalCost);
+        for (var m in markerMap) {
+            markerMap[m].setAnimation(null);
+        }
+
         $("#myTrip button.list-group-item").remove();
     });
 });
